@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antojitos de Doña Rosa · Girón</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Caveat:wght@600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--mora:#3B1245;--mora2:#5A2266;--maiz:#F6B511;--rojo:#D6311F;--crema:#FBF3E6;--tinta:#2A1620;--gris:#7a6a70;--linea:#eadfce}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{font-family:Nunito,system-ui,sans-serif;color:var(--tinta);line-height:1.5;padding-bottom:120px;
+ background:radial-gradient(circle at 100% 38%,#f6e3cf 0,transparent 26%),radial-gradient(circle at 0 70%,#f3e2d0 0,transparent 24%),var(--crema)}
+h1,h2,h3,.precio,.marca-txt b{font-family:"Baloo 2",Nunito,sans-serif;font-weight:800;line-height:1.05}
+:focus-visible{outline:3px solid var(--maiz);outline-offset:2px}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+/* encabezado */
+.top{background:var(--crema);position:sticky;top:0;z-index:20;box-shadow:0 1px 0 var(--linea)}
+.top-in{display:flex;align-items:center;gap:18px;padding-top:10px;padding-bottom:10px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--tinta)}
+.logo{width:52px;height:52px;border-radius:50%;background:var(--maiz);display:grid;place-items:center;font-size:1.9rem;overflow:hidden;border:3px solid #fff;box-shadow:0 2px 8px rgba(59,18,69,.2)}
+.logo img{width:100%;height:100%;object-fit:cover}
+.marca-txt{display:flex;flex-direction:column}
+.marca-txt b{font-size:1.15rem;color:var(--mora)}
+.marca-txt i{font-family:Caveat,cursive;font-size:1.05rem;color:var(--gris);font-style:normal}
+.nav{display:flex;gap:4px;margin:0 auto}
+.nav a{padding:9px 16px;border-radius:12px;font-weight:700;text-decoration:none;color:var(--tinta);white-space:nowrap}
+.nav a.on{background:var(--mora);color:#fff}
+.nav a:hover:not(.on){background:#efe3d0}
+.chip{background:#E9D3EE;color:var(--mora);padding:9px 16px;border-radius:14px;font-weight:700;white-space:nowrap}
+.cart{position:relative;width:52px;height:52px;border:0;border-radius:14px;background:var(--mora);color:#fff;font-size:1.4rem}
+.cart-n{position:absolute;top:-7px;right:-7px;background:var(--rojo);color:#fff;font:800 .78rem Nunito;min-width:22px;height:22px;border-radius:99px;display:grid;place-items:center;padding:0 5px}
+.cart-n[hidden]{display:none}
+/* hero */
+.hero{color:#fff;padding:52px 0 60px;background:radial-gradient(circle at 6% 92%,#5A2266 0,transparent 34%),radial-gradient(circle at 62% 0,#4b1b57 0,transparent 40%),var(--mora)}
+.hero-in{display:grid;grid-template-columns:1fr 1.05fr;gap:30px;align-items:center}
+.estado{display:inline-block;padding:4px 14px;border-radius:99px;font-weight:800;font-size:.85rem;background:#fff;color:var(--tinta);margin-bottom:12px}
+.estado.abierto{background:#bdeec2;color:#0f4a16}
+.estado.cerrado{background:#f6d4cf;color:#7d1d10}
+.kicker{display:block;color:var(--maiz);font-weight:800;letter-spacing:.18em;font-size:.85rem;text-transform:uppercase}
+.hero h1{font-size:clamp(3rem,7.5vw,5.4rem);line-height:.92;margin:8px 0 16px}
+.hero h1 #t1{display:block;color:#fff}
+.hero h1 #t2{display:block;color:var(--maiz)}
+.hero p.sub-h{font-size:1.15rem;opacity:.92;max-width:30ch;margin-bottom:22px}
+.acciones{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;border:0;border-radius:12px;padding:14px 24px;font-weight:800;text-decoration:none;font-size:1rem}
+.btn-main{background:var(--maiz);color:var(--tinta)}
+.btn-sec{border:2px solid #fff;color:#fff;background:transparent}
+.confianza{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:26px;font-weight:700;font-size:.92rem}
+.hero-arte{position:relative;min-height:340px}
+.plato-arte{height:340px;border-radius:36px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:5.4rem;background:radial-gradient(circle at 50% 45%,#7b3a86 0,#4b1b57 70%);box-shadow:0 20px 50px rgba(0,0,0,.35);overflow:hidden}
+.plato-arte img{width:100%;height:100%;object-fit:cover}
+.nota{position:absolute;font-family:Caveat,cursive;font-size:1.5rem;line-height:1.05;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+.n1{top:-10px;left:-6px;transform:rotate(-7deg)}
+.n2{top:-14px;right:2px;transform:rotate(6deg);text-align:right}
+.rating{position:absolute;right:10px;bottom:-24px;background:#fff;color:var(--tinta);border-radius:16px;padding:12px 18px;box-shadow:0 10px 26px rgba(0,0,0,.25);display:grid;grid-template-columns:auto auto;column-gap:8px;align-items:center}
+.rating[hidden]{display:none}
+.rating .star{color:var(--maiz);font-size:2rem;grid-row:span 2}
+.rating b{font:800 1.5rem "Baloo 2";line-height:1}
+.rating small{color:var(--gris);font-size:.8rem}
+/* menú */
+#menu{padding-top:60px}
+.menu-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px}
+.kick2{color:var(--mora2);font-weight:800;letter-spacing:.16em;font-size:.82rem;text-transform:uppercase}
+h2{font-size:clamp(1.8rem,4vw,2.4rem);color:var(--tinta)}
+h2::after{content:"";display:block;width:64px;height:6px;border-radius:6px;background:var(--maiz);margin-top:6px}
+.filtros{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.buscar{padding:11px 16px;border:1px solid var(--linea);border-radius:14px;background:#fff;min-width:200px;font:inherit}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{border:1px solid var(--linea);background:#fff;border-radius:14px;padding:10px 16px;font-weight:700;white-space:nowrap;box-shadow:0 2px 6px rgba(59,18,69,.06)}
+.tab[aria-pressed=true]{background:var(--mora);border-color:var(--mora);color:#fff}
+.menu{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;padding:22px 0}
+.plato{background:#fff;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 6px 18px rgba(59,18,69,.1);transition:transform .2s}
+.plato:hover{transform:translateY(-4px)}
+.foto{height:124px;display:grid;place-items:center;font-size:3.4rem;position:relative;overflow:hidden}
+.foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;top:10px;left:10px;background:var(--rojo);color:#fff;font-size:.75rem;font-weight:800;padding:3px 12px;border-radius:99px}
+.info{padding:12px 14px 14px;display:flex;flex-direction:column;gap:2px;flex:1}
+.info h3{font-size:1.1rem}
+.info p{color:var(--gris);font-size:.85rem;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fila{display:flex;justify-content:space-between;align-items:center;margin-top:8px;min-height:42px}
+.precio{font-size:1.3rem}
+.add{width:42px;height:42px;border-radius:50%;border:0;background:var(--maiz);color:var(--tinta);font-size:1.6rem;font-weight:800;line-height:1}
+.add:disabled{background:var(--linea);color:var(--gris);cursor:not-allowed}
+.agotado .foto{filter:grayscale(1);opacity:.55}
+.qty{display:flex;align-items:center;gap:8px;font-weight:800;background:#f6ecda;border-radius:99px;padding:3px}
+.qty button{width:34px;height:34px;border-radius:50%;border:0;background:var(--maiz);font-weight:800;font-size:1.1rem}
+.vacio{grid-column:1/-1;text-align:center;color:var(--gris);padding:30px}
+/* opiniones */
+#opiniones{padding:50px 0 10px}
+.sub{color:var(--gris);margin:10px 0 4px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:16px}
+.caja{background:#fff;border-radius:20px;padding:22px;box-shadow:0 6px 18px rgba(59,18,69,.1)}
+.caja h3{font-size:1.25rem;margin-bottom:8px}
+.estrellas{display:flex;gap:4px;margin:6px 0}
+.estrellas button{background:none;border:0;font-size:1.9rem;color:#d9cfc0;padding:0 2px}
+.estrellas button.on{color:var(--maiz)}
+.promedio{font-weight:800;margin-bottom:10px}
+.res{border-top:1px solid var(--linea);padding:10px 0}
+.sug{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--linea)}
+.sug button{border:1px solid var(--mora);background:#fff;color:var(--mora);border-radius:99px;padding:6px 14px;font-weight:800;white-space:nowrap}
+.sug button:disabled{background:var(--mora);color:#fff;cursor:default}
+.fila-form{display:flex;gap:8px;margin-top:12px}
+.fila-form button,.caja .enviar{background:var(--mora);color:#fff;border:0;border-radius:12px;padding:10px 18px;font-weight:800}
+.msg{font-size:.9rem;font-weight:800;margin-top:8px;color:var(--mora2)}
+label{display:block;font-weight:800;margin:14px 0 4px}
+input,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid #d8ccb9;border-radius:12px;background:#fff}
+/* datos */
+.dato{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;padding:50px 0 40px;align-items:start}
+.tarjeta{background:#fff;border-radius:18px;padding:18px;box-shadow:0 6px 18px rgba(59,18,69,.08)}
+.tarjeta h3{font-size:1.1rem;margin-bottom:4px;color:var(--mora)}
+.tarjeta a{color:var(--mora2);font-weight:800}
+.gracias{font-family:Caveat,cursive;font-size:1.6rem;line-height:1.1;background:#F3DFB6;padding:18px 24px;transform:rotate(-4deg);box-shadow:0 8px 18px rgba(0,0,0,.15);border-radius:4px;max-width:260px;justify-self:center}
+footer{background:var(--mora);color:#e2cfe8;text-align:center;padding:26px 20px 36px;font-size:.9rem}
+/* carrito flotante */
+.barra{position:fixed;right:20px;bottom:20px;width:270px;background:var(--mora);color:#fff;padding:16px;border-radius:22px;display:none;flex-direction:column;gap:12px;z-index:30;box-shadow:0 14px 34px rgba(0,0,0,.4)}
+.barra.on{display:flex}
+.barra-top{display:flex;align-items:center;gap:12px}
+.barra-top .ic{font-size:1.8rem;background:var(--mora2);border-radius:14px;width:48px;height:48px;display:grid;place-items:center}
+.barra small{display:block;opacity:.85}
+.barra b{font:800 1.6rem "Baloo 2";line-height:1}
+.barra button{background:var(--maiz);border:0;border-radius:14px;padding:12px;font-weight:800;color:var(--tinta)}
+/* pedido */
+dialog{border:0;border-radius:24px;padding:24px;width:min(440px,92vw);margin:auto;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+dialog::backdrop{background:rgba(30,8,36,.6)}
+dialog h2{margin-bottom:14px}
+.item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--linea)}
+.total{display:flex;justify-content:space-between;font-weight:800;font-size:1.25rem;margin:14px 0 0}
+.ubi{width:100%;margin-top:14px;border:2px dashed var(--mora2);background:#fff;border-radius:12px;padding:11px;font-weight:800}
+.ubi.ok{border-style:solid;background:#bdeec2;border-color:#2c8a37}
+.ubi-nota{font-size:.82rem;color:var(--gris);margin-top:4px}
+#enviar{background:var(--mora);color:#fff;width:100%;margin-top:16px}
+.cerrar{background:none;border:0;text-decoration:underline;margin-top:10px;width:100%}
+.tipo{border:1px solid var(--linea);border-radius:14px;padding:6px 14px 10px;margin-top:6px}
+.tipo legend{font-weight:800;padding:0 6px}
+.op{display:flex;align-items:flex-start;gap:10px;margin:8px 0 0;font-weight:700}
+.op input{width:auto;margin-top:5px}
+.op small{display:block;font-weight:600;color:var(--gris)}
+.desglose{margin-top:12px;color:var(--gris)}
+.desglose div{display:flex;justify-content:space-between}
+@media(max-width:900px){
+ .top-in{flex-wrap:wrap}.nav{order:3;width:100%;overflow-x:auto;margin:0}.chip{display:none}.cart{margin-left:auto}
+ .hero-in{grid-template-columns:1fr}.hero-arte{min-height:0;margin-top:20px}.plato-arte{height:260px}.nota{display:none}.rating{right:8px}
+ .barra{left:12px;right:12px;bottom:12px;width:auto;flex-direction:row;align-items:center}
+ .barra-top{flex:1}.barra button{white-space:nowrap}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap top-in">
+  <a href="#inicio" class="marca"><span id="logo" class="logo"></span><span class="marca-txt"><b id="m-nombre"></b><i id="lema"></i></span></a>
+  <nav class="nav" aria-label="Principal">
+    <a href="#inicio" class="on">Inicio</a><a href="#menu">Menú</a><a href="#opiniones">Reseñas</a><a href="#ubicacion">Ubicación</a><a id="contacto" target="_blank" rel="noopener">Contáctanos</a>
+  </nav>
+  <span id="chip-lugar" class="chip"></span>
+  <button id="cart-btn" class="cart" aria-label="Ver mi pedido">🛒<span id="cart-count" class="cart-n" hidden>0</span></button>
+</div></header>
+
+<section id="inicio" class="hero"><div class="wrap hero-in">
+  <div>
+    <span id="estado" class="estado"></span>
+    <span class="kicker">Bienvenidos a</span>
+    <h1><span id="t1"></span><span id="t2"></span></h1>
+    <p id="eslogan" class="sub-h"></p>
+    <div class="acciones">
+      <a href="#menu" class="btn btn-main">🍴 Ver el menú →</a>
+      <a id="wa-directo" class="btn btn-sec" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+    </div>
+    <div class="confianza"><span>🌿 Ingredientes frescos</span><span>🧡 Sabor casero</span><span>👥 Clientes felices</span></div>
+  </div>
+  <div class="hero-arte">
+    <div id="hero-img" class="plato-arte"></div>
+    <p class="nota n1">Más que comida,<br>tradición ♥</p>
+    <p class="nota n2">El auténtico<br>sabor ecuatoriano ♥</p>
+    <div id="rating" class="rating" hidden><span class="star">★</span><b id="rating-n"></b><small id="rating-t"></small></div>
+  </div>
+</div></section>
+
+<main class="wrap">
+  <section id="menu">
+    <div class="menu-head">
+      <div><span class="kick2">Nuestro menú</span><h2>Platos que te hacen sonreír</h2></div>
+      <div class="filtros">
+        <input id="buscar" class="buscar" type="search" placeholder="🔎 Buscar un producto…" aria-label="Buscar un producto">
+        <div id="tabs" class="tabs" role="group" aria-label="Categorías"></div>
+      </div>
+    </div>
+    <div id="platos" class="menu"></div>
+  </section>
+
+  <section id="opiniones">
+    <span class="kick2">Tu voz importa</span>
+    <h2>Tu opinión cuenta</h2>
+    <p class="sub">Cuéntanos qué tal estuvo todo y qué te gustaría ver en el menú.</p>
+    <div class="cols">
+      <div class="caja">
+        <h3>Deja tu reseña</h3>
+        <div id="promedio" class="promedio"></div>
+        <div id="estrellas" class="estrellas" role="group" aria-label="Calificación"></div>
+        <label for="r-nombre">Tu nombre (opcional)</label>
+        <input id="r-nombre" maxlength="40">
+        <label for="r-texto">Comentario</label>
+        <textarea id="r-texto" rows="3" maxlength="300"></textarea>
+        <button id="r-enviar" class="enviar" style="margin-top:12px">Publicar reseña</button>
+        <div id="r-msg" class="msg" role="status"></div>
+        <div id="r-lista"></div>
+      </div>
+      <div class="caja">
+        <h3>¿Qué te gustaría que vendamos?</h3>
+        <p class="sub">Si ya lo pidieron, súmate con un voto.</p>
+        <div id="s-lista"></div>
+        <div class="fila-form">
+          <input id="s-texto" maxlength="60" placeholder="Ej: pizza, alitas, jugos…" aria-label="Tu sugerencia">
+          <button id="s-enviar">Sugerir</button>
+        </div>
+        <div id="s-msg" class="msg" role="status"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ubicacion" class="dato">
+    <div class="tarjeta"><h3>🕓 Horario</h3><p id="horario"></p></div>
+    <div class="tarjeta"><h3>📍 Dónde estamos</h3><p id="direccion"></p><p><a id="mapa" target="_blank" rel="noopener">Abrir en Google Maps</a></p></div>
+    <div class="tarjeta"><h3>💬 Cómo pedir</h3><p>Elige tus productos, abre tu pedido y te llevamos a WhatsApp con todo listo para enviar.</p></div>
+    <p class="gracias">Gracias por apoyar al local ♥<br>¡Nos vemos pronto!</p>
+  </section>
+</main>
+<footer id="pie"></footer>
+
+<div id="barra" class="barra">
+  <div class="barra-top"><span class="ic">🛒</span><div><small id="barra-n"></small><b id="barra-t"></b></div></div>
+  <button id="abrir">Enviar pedido por WhatsApp</button>
+</div>
+
+<dialog id="dlg">
+  <h2>Tu pedido</h2>
+  <div id="lista"></div>
+  <fieldset id="tipo-box" class="tipo"><legend>¿Cómo quieres tu pedido?</legend>
+    <label class="op"><input type="radio" name="tipo" value="retiro" checked> <span>Retiro en el local <small>sin recargo</small></span></label>
+    <label class="op"><input type="radio" name="tipo" value="entrega"> <span>Entrega a domicilio <small id="entrega-txt"></small></span></label>
+  </fieldset>
+  <div class="desglose">
+    <div><span>Subtotal</span><span id="subtotal"></span></div>
+    <div id="fila-rec" hidden><span>Recargo por entrega</span><span id="recargo"></span></div>
+  </div>
+  <div class="total"><span>Total</span><span id="total"></span></div>
+  <div id="dir-box" hidden>
+    <label for="direccion-cli">Dirección o referencia de entrega</label>
+    <input id="direccion-cli" maxlength="120" placeholder="Barrio, calle, casa de color…">
+  </div>
+  <label for="cliente">Tu nombre</label>
+  <input id="cliente" autocomplete="name">
+  <label for="nota">Notas (sin ají, más salsa…)</label>
+  <textarea id="nota" rows="2"></textarea>
+  <button id="ubi" type="button" class="ubi">📍 Compartir mi ubicación (opcional)</button>
+  <p id="ubi-nota" class="ubi-nota">Solo se envía si tú lo activas, junto con tu pedido, para que sepan dónde llevarlo.</p>
+  <p id="ent-msg" class="msg" role="status"></p>
+  <button id="enviar" class="btn">Enviar pedido por WhatsApp</button>
+  <button id="cerrar" class="cerrar">Seguir viendo el menú</button>
+</dialog>
+<script>
+/* ===== DATOS =====
+   Más adelante cargarDatos() leerá todo desde Supabase y el dueño lo editará
+   desde el panel /admin. Los precios de abajo son de EJEMPLO: cámbialos por los reales. */
+const DATOS = {
+  config: {
+    nombre: "Antojitos de Doña Rosa",
+    lugar: "Girón, Azuay",
+    eslogan: "El auténtico sabor casero hecho al instante. Disfruta de nuestras empanadas crujientes, papas, colada morada y los mejores antojitos ecuatorianos.",
+    lema: "Sabor casero, siempre contigo ♥",
+    entrega: {activa: true, porcentaje: 0.25, minimo: 1.00},  /* recargo por llevar el pedido: 0.25 = 25 % */
+    fotoHero: "img/hero.jpeg",
+    logo: "img/eslogan.jpeg",
+    whatsapp: "593987473481",
+    direccion: "Girón, Azuay",   /* agrega aquí la dirección exacta */
+    mapa: "https://maps.google.com/?q=Girón,Azuay,Ecuador",
+    dias: [0,1,2,3,4,5,6], desde: "16:00", hasta: "22:00",
+    horarioTexto: "Todos los días, de 4 pm a 10 pm (ejemplo)"
+  },
+  categorias: [
+    {id:"comidas", nombre:"🍽️ Comidas", color:"#F7D774"},
+    {id:"picar", nombre:"🥟 Para picar", color:"#F2A88F"},
+    {id:"calientes", nombre:"☕ Calientes", color:"#C9A3D1"},
+    {id:"frias", nombre:"🥤 Bebidas frías", color:"#A8D8E8"}
+  ],
+  productos: [
+    {id:1,cat:"comidas",nombre:"Papipollo",desc:"Papas fritas con presas de pollo y salsas.",precio:2.5,emoji:"🍗",destacado:true,disponible:true,foto:"img/papipollo.png"},
+    {id:2,cat:"comidas",nombre:"Chaulafán",desc:"Arroz frito con pollo, huevo y verduras.",precio:3,emoji:"🍚",disponible:true,foto:"img/chaulafan.jpg"},
+    {id:3,cat:"comidas",nombre:"Papas fritas",desc:"Crocantes, con salsas de la casa.",precio:1.5,emoji:"🍟",destacado:true,disponible:true,foto:"img/papasfritas.jpg"},
+    {id:4,cat:"picar",nombre:"Empanada de queso",desc:"Recién fritas, con queso que se estira.",precio:0.75,emoji:"🥟",destacado:true,disponible:true,foto:"img/empanadadequeso.jpg"},
+    {id:5,cat:"calientes",nombre:"Colada morada",desc:"Espesa y aromática, para el frío de la tarde.",precio:1,emoji:"🍵",disponible:true,foto:"img/coladamorada.jpg"},
+    {id:6,cat:"calientes",nombre:"Morocho",desc:"Tradicional, con canela y leche.",precio:1,emoji:"🥛",disponible:true,foto:"img/morocho.jpg"},
+    {id:7,cat:"calientes",nombre:"Café",desc:"Caliente y recién hecho.",precio:0.75,emoji:"☕",disponible:true,foto:"img/cafe.jpg"},
+    {id:8,cat:"frias",nombre:"Coca-Cola",desc:"Personal, bien fría.",precio:1,emoji:"🥤",disponible:true,foto:"img/cocacola.jpg"},
+    {id:9,cat:"frias",nombre:"Fiora",desc:"Personal, bien fría.",precio:1,emoji:"🥤",disponible:true,foto:"img/fiora.jpg"},
+    {id:10,cat:"frias",nombre:"Fanta",desc:"Personal, bien fría.",precio:1,emoji:"🥤",disponible:true,foto:"img/fanta.jpg"},
+    {id:11,cat:"frias",nombre:"Sprite",desc:"Personal, bien fría.",precio:1,emoji:"🥤",disponible:true,foto:"img/sprite.jpg"},
+    {id:12,cat:"frias",nombre:"Agua en botella",desc:"Botella de agua.",precio:0.6,emoji:"💧",disponible:true,foto:"img/aguaenbotella.jpg"}
+  ]
+};
+async function cargarDatos(){ return DATOS; }
+
+const $ = id => document.getElementById(id);
+const money = n => "$" + n.toFixed(2);
+let D, catActual = "todas", carrito = {};
+
+function abiertoAhora(c){
+  const a = new Date(), hm = a.toTimeString().slice(0,5);
+  return c.dias.includes(a.getDay()) && hm >= c.desde && hm < c.hasta;
+}
+function pintarCabecera(){
+  const c = D.config, wa = "https://wa.me/" + c.whatsapp;
+  document.title = c.nombre + " · " + c.lugar;
+  const [p1, ...resto] = c.nombre.split(" ");
+  $("t1").textContent = p1; $("t2").textContent = resto.join(" ");
+  $("m-nombre").textContent = c.nombre; $("lema").textContent = c.lema || "";
+  $("chip-lugar").textContent = "📍 " + c.lugar;
+  $("eslogan").textContent = c.eslogan;
+  $("horario").textContent = c.horarioTexto;
+  $("direccion").textContent = c.direccion;
+  $("mapa").href = c.mapa;
+  $("wa-directo").href = wa; $("contacto").href = wa;
+  $("pie").textContent = c.nombre + " · " + c.lugar;
+  const lg = $("logo"); lg.textContent = "";
+  if (c.logo) { const im = document.createElement("img"); im.src = c.logo; im.alt = ""; lg.appendChild(im); } else lg.textContent = "👵";
+  const hi = $("hero-img"); hi.textContent = "";
+  if (c.fotoHero) { const im = document.createElement("img"); im.src = c.fotoHero; im.alt = c.nombre; hi.appendChild(im); }
+  else ["🍗","🍟","🥟"].forEach(e => { const s = document.createElement("span"); s.textContent = e; hi.appendChild(s); });
+  const ab = abiertoAhora(c), e = $("estado");
+  e.textContent = ab ? "● Abierto ahora" : "● Cerrado por ahora";
+  e.className = "estado " + (ab ? "abierto" : "cerrado");
+}
+function pintarRating(l){
+  const r = $("rating");
+  if (!l.length) { r.hidden = true; return; }
+  r.hidden = false;
+  $("rating-n").textContent = (l.reduce((a, x) => a + x.estrellas, 0) / l.length).toFixed(1);
+  $("rating-t").textContent = l.length + (l.length === 1 ? " reseña de clientes" : " reseñas de clientes");
+}
+function pintarTabs(){
+  const cont = $("tabs"); cont.innerHTML = "";
+  [{id:"todas",nombre:"✨ Todo"}, ...D.categorias].forEach(c => {
+    const b = document.createElement("button");
+    b.className = "tab"; b.textContent = c.nombre;
+    b.setAttribute("aria-pressed", c.id === catActual);
+    b.onclick = () => { catActual = c.id; pintarTabs(); pintarPlatos(); };
+    cont.appendChild(b);
+  });
+}
+let busqueda = "";
+function controles(p){
+  const q = carrito[p.id] || 0, f = document.createElement("div");
+  if (!q) {
+    const b = document.createElement("button"); b.className = "add"; b.textContent = "+";
+    b.setAttribute("aria-label", p.disponible ? "Agregar " + p.nombre : p.nombre + " agotado");
+    b.disabled = !p.disponible; b.onclick = () => cambiar(p.id, 1); f.appendChild(b);
+  } else {
+    f.className = "qty";
+    const m = document.createElement("button"); m.textContent = "−"; m.setAttribute("aria-label","Quitar uno"); m.onclick = () => cambiar(p.id,-1);
+    const n = document.createElement("span"); n.textContent = q;
+    const s = document.createElement("button"); s.textContent = "+"; s.setAttribute("aria-label","Agregar uno"); s.onclick = () => cambiar(p.id,1);
+    f.append(m, n, s);
+  }
+  return f;
+}
+function pintarPlatos(){
+  const cont = $("platos"); cont.innerHTML = "";
+  const lista = D.productos.filter(p => (catActual === "todas" || p.cat === catActual) && (!busqueda || norm(p.nombre + " " + p.desc).includes(busqueda)));
+  if (!lista.length) { const v = document.createElement("p"); v.className = "vacio"; v.textContent = "No encontramos ese producto. ¡Cuéntanos abajo si quieres que lo vendamos!"; cont.appendChild(v); return; }
+  lista.forEach(p => {
+    const cat = D.categorias.find(c => c.id === p.cat);
+    const el = document.createElement("article"); el.className = "plato" + (p.disponible ? "" : " agotado");
+    const foto = document.createElement("div"); foto.className = "foto"; foto.style.background = (cat && cat.color) || "#eee";
+    const emo = () => { const s = document.createElement("span"); s.textContent = p.emoji || "🍽️"; return s; };
+    if (p.foto) { const im = document.createElement("img"); im.src = p.foto; im.alt = p.nombre; im.loading = "lazy"; im.onerror = () => im.replaceWith(emo()); foto.appendChild(im); }
+    else foto.appendChild(emo());
+    if (p.destacado && p.disponible) { const bd = document.createElement("span"); bd.className = "badge"; bd.textContent = "Más pedido"; foto.appendChild(bd); }
+    const info = document.createElement("div"); info.className = "info";
+    const h = document.createElement("h3"); h.textContent = p.nombre;
+    const d = document.createElement("p"); d.textContent = p.disponible ? p.desc : "Agotado por hoy";
+    const fila = document.createElement("div"); fila.className = "fila";
+    const pr = document.createElement("span"); pr.className = "precio"; pr.textContent = money(p.precio);
+    fila.append(pr, controles(p)); info.append(h, d, fila); el.append(foto, info); cont.appendChild(el);
+  });
+}
+function cambiar(id, delta){
+  carrito[id] = Math.max(0, (carrito[id] || 0) + delta);
+  if (!carrito[id]) delete carrito[id];
+  pintarPlatos(); pintarCarrito();
+}
+function resumen(){
+  let n = 0, t = 0;
+  Object.entries(carrito).forEach(([id,q]) => { const p = D.productos.find(x => x.id == id); n += q; t += q * p.precio; });
+  return {n, t};
+}
+function pintarCarrito(){
+  const {n, t} = resumen();
+  $("barra").classList.toggle("on", n > 0);
+  $("barra-n").textContent = n + (n === 1 ? " producto" : " productos"); $("barra-t").textContent = money(t); $("cart-count").textContent = n; $("cart-count").hidden = !n;
+  const lista = $("lista"); lista.innerHTML = "";
+  Object.entries(carrito).forEach(([id,q]) => {
+    const p = D.productos.find(x => x.id == id);
+    const fila = document.createElement("div"); fila.className = "item";
+    const nom = document.createElement("span"); nom.textContent = p.nombre + " · " + money(p.precio * q);
+    const ctl = document.createElement("div"); ctl.className = "qty";
+    const m = document.createElement("button"); m.textContent = "−"; m.setAttribute("aria-label","Quitar uno"); m.onclick = () => cambiar(p.id,-1);
+    const c = document.createElement("span"); c.textContent = q;
+    const s = document.createElement("button"); s.textContent = "+"; s.setAttribute("aria-label","Agregar uno"); s.onclick = () => cambiar(p.id,1);
+    ctl.append(m, c, s); fila.append(nom, ctl); lista.appendChild(fila);
+  });
+  pintarTotales();
+  if (!n && $("dlg").open) $("dlg").close();
+}
+const tipoPedido = () => document.querySelector('input[name="tipo"]:checked').value;
+function recargo(sub){
+  const e = D.config.entrega;
+  if (!e || !e.activa || tipoPedido() !== "entrega" || sub <= 0) return 0;
+  return Math.round(Math.max(sub * e.porcentaje, e.minimo) * 100) / 100;
+}
+function pintarTotales(){
+  const e = D.config.entrega, sub = resumen().t, rec = recargo(sub);
+  $("tipo-box").hidden = !(e && e.activa);
+  if (e && e.activa) $("entrega-txt").textContent = "+" + Math.round(e.porcentaje * 100) + " % (mínimo " + money(e.minimo) + ")";
+  $("subtotal").textContent = money(sub);
+  $("fila-rec").hidden = rec === 0; $("recargo").textContent = money(rec);
+  $("total").textContent = money(sub + rec);
+  $("dir-box").hidden = tipoPedido() !== "entrega";
+}
+document.querySelectorAll('input[name="tipo"]').forEach(r => r.onchange = () => { $("ent-msg").textContent = ""; pintarTotales(); });
+function enviarWhatsApp(){
+  const {t} = resumen(), c = D.config;
+  const ent = tipoPedido() === "entrega", dir = $("direccion-cli").value.trim();
+  if (ent && !dir && !ubicacion) { $("ent-msg").textContent = "Para la entrega escribe tu dirección o comparte tu ubicación."; return; }
+  const rec = recargo(t);
+  let msg = "Hola " + c.nombre + ", quiero hacer un pedido:\n\n";
+  Object.entries(carrito).forEach(([id,q]) => { const p = D.productos.find(x => x.id == id); msg += "• " + q + " x " + p.nombre + " (" + money(p.precio*q) + ")\n"; });
+  msg += "\nSubtotal: " + money(t);
+  if (ent) msg += "\nRecargo por entrega (" + Math.round(c.entrega.porcentaje * 100) + " %): " + money(rec);
+  msg += "\nTotal: " + money(t + rec);
+  msg += ent ? "\nTipo: ENTREGA A DOMICILIO" : "\nTipo: Retiro en el local";
+  if (ent && dir) msg += "\nDirección: " + dir;
+  const nom = $("cliente").value.trim(), nota = $("nota").value.trim();
+  if (nom) msg += "\nNombre: " + nom;
+  if (nota) msg += "\nNotas: " + nota;
+  if (ubicacion) msg += "\nMi ubicación: https://maps.google.com/?q=" + ubicacion.lat + "," + ubicacion.lng;
+  window.open("https://wa.me/" + c.whatsapp + "?text=" + encodeURIComponent(msg), "_blank");
+}
+$("abrir").onclick = () => $("dlg").showModal();
+$("cerrar").onclick = () => $("dlg").close();
+$("enviar").onclick = enviarWhatsApp;
+$("cart-btn").onclick = () => { if (resumen().n) $("dlg").showModal(); else location.hash = "#menu"; };
+$("buscar").oninput = e => { busqueda = norm(e.target.value); pintarPlatos(); };
+
+
+/* ===== UBICACIÓN (solo si el cliente lo activa) ===== */
+let ubicacion = null;
+$("ubi").onclick = () => {
+  const b = $("ubi"), nota = $("ubi-nota");
+  if (ubicacion) { ubicacion = null; b.className = "ubi"; b.textContent = "📍 Compartir mi ubicación (opcional)"; return; }
+  if (!navigator.geolocation) { nota.textContent = "Tu navegador no permite compartir ubicación."; return; }
+  b.textContent = "Buscando tu ubicación…";
+  navigator.geolocation.getCurrentPosition(pos => {
+    ubicacion = {lat: pos.coords.latitude.toFixed(6), lng: pos.coords.longitude.toFixed(6)};
+    b.className = "ubi ok"; b.textContent = "✅ Ubicación lista (toca para quitarla)";
+  }, () => {
+    b.textContent = "📍 Compartir mi ubicación (opcional)";
+    nota.textContent = "No pudimos obtenerla. Revisa el permiso de ubicación del navegador.";
+  }, {enableHighAccuracy:true, timeout:10000});
+};
+
+/* ===== RESEÑAS Y SUGERENCIAS =====
+   Ahora se guardan en el navegador (solo demo). Con Supabase, estas 5 funciones
+   pasan a leer/escribir en la base de datos y todos verán lo mismo. */
+const Store = {
+  get(k, def){ try { const v = JSON.parse(localStorage.getItem(k)); return v == null ? def : v; } catch { return def; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+const API = {
+  async listarResenas(){ return Store.get("resenas", []); },
+  async crearResena(r){ const l = Store.get("resenas", []); l.unshift(r); Store.set("resenas", l); },
+  async listarSugerencias(){
+    return Store.get("sugerencias", [{id:"s1",texto:"Pizza",votos:3},{id:"s2",texto:"Alitas",votos:2},{id:"s3",texto:"Jugos naturales",votos:1}]);
+  },
+  async guardarSugerencias(l){ Store.set("sugerencias", l); }
+};
+let estrellas = 0;
+const votados = new Set(Store.get("votados", []));
+const norm = t => t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9 ]/g, "").trim();
+
+function pintarEstrellas(){
+  const c = $("estrellas"); c.innerHTML = "";
+  for (let i = 1; i <= 5; i++) {
+    const b = document.createElement("button"); b.type = "button"; b.textContent = "★";
+    b.className = i <= estrellas ? "on" : ""; b.setAttribute("aria-label", i + " de 5 estrellas");
+    b.onclick = () => { estrellas = i; pintarEstrellas(); };
+    c.appendChild(b);
+  }
+}
+async function pintarResenas(){
+  const l = await API.listarResenas(), cont = $("r-lista"); cont.innerHTML = ""; pintarRating(l);
+  $("promedio").textContent = l.length ? "⭐ " + (l.reduce((a, r) => a + r.estrellas, 0) / l.length).toFixed(1) + " · " + l.length + (l.length === 1 ? " reseña" : " reseñas") : "Sé el primero en dejar una reseña";
+  l.slice(0, 8).forEach(r => {
+    const d = document.createElement("div"); d.className = "res";
+    const t = document.createElement("div"); t.textContent = "★".repeat(r.estrellas) + " " + r.nombre;
+    const x = document.createElement("div"); x.textContent = r.texto;
+    d.append(t, x); cont.appendChild(d);
+  });
+}
+async function pintarSugerencias(){
+  const l = (await API.listarSugerencias()).sort((a, b) => b.votos - a.votos), cont = $("s-lista"); cont.innerHTML = "";
+  l.forEach(s => {
+    const f = document.createElement("div"); f.className = "sug";
+    const t = document.createElement("span"); t.textContent = s.texto;
+    const b = document.createElement("button"); const ya = votados.has(s.id);
+    b.textContent = (ya ? "✔ Votaste · " : "👍 Yo también · ") + s.votos; b.disabled = ya;
+    b.onclick = () => votar(s.id);
+    f.append(t, b); cont.appendChild(f);
+  });
+}
+async function votar(id){
+  const l = await API.listarSugerencias(), s = l.find(x => x.id === id);
+  if (!s || votados.has(id)) return;
+  s.votos++; votados.add(id); Store.set("votados", [...votados]);
+  await API.guardarSugerencias(l); pintarSugerencias();
+}
+async function sugerir(){
+  const texto = $("s-texto").value.trim(), m = $("s-msg");
+  if (texto.length < 3) { m.textContent = "Escribe qué te gustaría que vendamos."; return; }
+  const l = await API.listarSugerencias(), n = norm(texto);
+  const igual = l.find(x => norm(x.texto) === n || norm(x.texto) + "s" === n || norm(x.texto) === n + "s");
+  if (igual) {
+    if (votados.has(igual.id)) m.textContent = "Ya votaste por eso, ¡gracias!";
+    else { await votar(igual.id); m.textContent = "Ya la habían pedido, sumamos tu voto 🙌"; }
+  } else {
+    const nueva = {id: "s" + Date.now(), texto: texto, votos: 1};
+    l.push(nueva); votados.add(nueva.id); Store.set("votados", [...votados]);
+    await API.guardarSugerencias(l); m.textContent = "¡Gracias! Tu sugerencia ya está en la lista.";
+  }
+  $("s-texto").value = ""; pintarSugerencias();
+}
+async function publicarResena(){
+  const m = $("r-msg"), texto = $("r-texto").value.trim();
+  if (!estrellas) { m.textContent = "Elige cuántas estrellas das."; return; }
+  if (texto.length < 3) { m.textContent = "Escribe un comentario corto."; return; }
+  await API.crearResena({estrellas, nombre: $("r-nombre").value.trim() || "Cliente", texto});
+  estrellas = 0; $("r-texto").value = ""; $("r-nombre").value = "";
+  m.textContent = "¡Gracias por tu reseña!"; pintarEstrellas(); pintarResenas();
+}
+function iniciarOpiniones(){
+  pintarEstrellas(); pintarResenas(); pintarSugerencias();
+  $("r-enviar").onclick = publicarResena; $("s-enviar").onclick = sugerir;
+  $("s-texto").onkeydown = e => { if (e.key === "Enter") sugerir(); };
+}
+
+cargarDatos().then(d => { D = d; pintarCabecera(); pintarTabs(); pintarPlatos(); pintarCarrito(); iniciarOpiniones(); });
+</script>
+</body>
+</html>
