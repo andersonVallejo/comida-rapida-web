@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"></script>
 <style>
 :root{--noche:#1a0c20;--mora:#3b1245;--mora2:#5a2266;--oro:#e0a526;--oro2:#f3c04d;--crema:#faf4e8;--papel:#fffbf3;--tinta:#241520;--gris:#6f6269;--linea:#e6dccb;--serif:Fraunces,Georgia,serif}
 *{box-sizing:border-box;margin:0}
@@ -327,15 +328,15 @@ const DATOS = {
     lugar: "Girón, Azuay",
     eslogan: "El auténtico sabor casero hecho al instante. Disfruta de nuestras empanadas crujientes, papas, colada morada y los mejores antojitos ecuatorianos.",
     lema: "Sabor casero, siempre contigo ♥",
-    autor: "Anderson",   /* tu nombre o marca, aparece en el pie de página */
-    autorLink: "",       /* opcional: tu WhatsApp, Instagram o portafolio, ej: "https://wa.me/593..." */
-    entrega: {activa: true, porcentaje: 0.25, minimo: 1.00},  /* recargo por llevar el pedido: 0.25 = 25 % */
+    autor: "Anderson",
+    autorLink: "",
+    entrega: {activa: true, porcentaje: 0.25, minimo: 1.00},
     fotoHero: "img/hero.jpeg",
     fotoNosotros: "img/nosotros.jpeg",
     galeria: ["img/galeria1.png","img/galeria2.png","img/galeria3.png","img/galeria4.png","img/galeria5.png","img/galeria6.png"],
     logo: "img/eslogan.jpeg",
     whatsapp: "593987473481",
-    direccion: "Girón, Azuay",   /* agrega aquí la dirección exacta */
+    direccion: "Girón, Azuay",
     mapa: "https://maps.google.com/?q=Girón,Azuay,Ecuador",
     dias: [0,1,2,3,4,5,6], desde: "16:00", hasta: "22:00",
     horarioTexto: "Todos los días, de 4 pm a 10 pm (ejemplo)"
@@ -347,21 +348,38 @@ const DATOS = {
     {id:"frias", nombre:"Bebidas frías"}
   ],
   productos: [
-    {id:1,cat:"comidas",nombre:"Papipollo",desc:"Papas fritas con presas de pollo y salsas.",precio:2.5,emoji:"🍗",destacado:true,disponible:true,foto:"img/papipollo.png"},
-    {id:2,cat:"comidas",nombre:"Chaulafán",desc:"Arroz frito con pollo, huevo y verduras.",precio:3,emoji:"🍚",disponible:true,foto:"img/chaulafan.jpeg"},
-    {id:3,cat:"comidas",nombre:"Papas fritas",desc:"Crocantes, con salsas de la casa.",precio:1.5,emoji:"🍟",destacado:true,disponible:true,foto:"img/salchipapa.jpg"},
-    {id:4,cat:"picar",nombre:"Empanada de queso",desc:"Recién fritas, con queso que se estira.",precio:0.75,emoji:"🥟",destacado:true,disponible:true,foto:"img/empanadas.jpg"},
-    {id:5,cat:"calientes",nombre:"Colada morada",desc:"Espesa y aromática, para el frío de la tarde.",precio:1,emoji:"🍵",disponible:true,foto:"img/colada.png"},
-    {id:6,cat:"calientes",nombre:"Morocho",desc:"Tradicional, con canela y leche.",precio:1,emoji:"🥛",disponible:true,foto:"img/morocho.png"},
-    {id:7,cat:"calientes",nombre:"Café",desc:"Caliente y recién hecho.",precio:0.75,emoji:"☕",disponible:true,foto:"img/cafe.jpg"},
-    {id:8,cat:"frias",nombre:"Coca-Cola",desc:"Personal, bien fría.",precio:1,emoji:"🥤",disponible:true,foto:"img/coca.jpeg"},
-    {id:9,cat:"frias",nombre:"Fiora",desc:"Personal, bien fría.",precio:1,emoji:"🥤",disponible:true,foto:"img/fiora.jpeg"},
-    {id:10,cat:"frias",nombre:"Fanta",desc:"Personal, bien fría.",precio:1,emoji:"🥤",disponible:true,foto:"img/fant.png"},
-    {id:11,cat:"frias",nombre:"Sprite",desc:"Personal, bien fría.",precio:1,emoji:"🥤",disponible:true,foto:"img/sprite.jpeg"},
-    {id:12,cat:"frias",nombre:"Agua en botella",desc:"Botella de agua.",precio:0.6,emoji:"💧",disponible:true,foto:"img/agua.avif"}
+    {id:1,cat:"comidas",nombre:"Papipollo",desc:"Papas fritas con presas de pollo y salsas.",precio:2.5,destacado:true,disponible:true,foto:"img/papipollo.png"},
+    {id:2,cat:"comidas",nombre:"Chaulafán",desc:"Arroz frito con pollo, huevo y verduras.",precio:3,disponible:true,foto:"img/chaulafan.jpeg"},
+    {id:3,cat:"comidas",nombre:"Papas fritas",desc:"Crocantes, con salsas de la casa.",precio:1.5,destacado:true,disponible:true,foto:"img/salchipapa.jpg"},
+    {id:4,cat:"picar",nombre:"Empanada de queso",desc:"Recién fritas, con queso que se estira.",precio:0.75,destacado:true,disponible:true,foto:"img/empanadas.jpg"},
+    {id:5,cat:"calientes",nombre:"Colada morada",desc:"Espesa y aromática, para el frío de la tarde.",precio:1,disponible:true,foto:"img/colada.png"},
+    {id:6,cat:"calientes",nombre:"Morocho",desc:"Tradicional, con canela y leche.",precio:1,disponible:true,foto:"img/morocho.png"},
+    {id:7,cat:"calientes",nombre:"Café",desc:"Caliente y recién hecho.",precio:0.75,disponible:true,foto:"img/cafe.jpg"},
+    {id:8,cat:"frias",nombre:"Coca-Cola",desc:"Personal, bien fría.",precio:1,disponible:true,foto:"img/coca.jpeg"},
+    {id:9,cat:"frias",nombre:"Fiora",desc:"Personal, bien fría.",precio:1,disponible:true,foto:"img/fiora.jpeg"},
+    {id:10,cat:"frias",nombre:"Fanta",desc:"Personal, bien fría.",precio:1,disponible:true,foto:"img/fant.png"},
+    {id:11,cat:"frias",nombre:"Sprite",desc:"Personal, bien fría.",precio:1,disponible:true,foto:"img/sprite.jpeg"},
+    {id:12,cat:"frias",nombre:"Agua en botella",desc:"Botella de agua.",precio:0.6,disponible:true,foto:"img/agua.avif"}
   ]
 };
-async function cargarDatos(){ return DATOS; }
+/* Lee el menú y los datos del negocio desde Supabase; si falla, usa los datos de arriba como respaldo */
+async function cargarDatos(){
+  try {
+    if (!db) return DATOS;
+    const [c, p, k] = await Promise.all([
+      db.from('categorias').select('id,nombre').order('orden'),
+      db.from('productos').select('id,categoria_id,nombre,descripcion,precio,foto,destacado,disponible').order('orden').order('id'),
+      db.from('config').select('datos').eq('id', 1).maybeSingle()
+    ]);
+    const fallo = c.error || p.error || k.error;
+    if (fallo) throw fallo;
+    return {
+      config: { ...DATOS.config, ...(k.data ? k.data.datos : {}) },
+      categorias: c.data,
+      productos: p.data.map(x => ({ id: x.id, cat: x.categoria_id, nombre: x.nombre, desc: x.descripcion, precio: Number(x.precio), foto: x.foto, destacado: x.destacado, disponible: x.disponible }))
+    };
+  } catch (e) { console.error('Usando datos de respaldo:', e); return DATOS; }
+}
 
 const $ = id => document.getElementById(id);
 const money = n => "$" + n.toFixed(2);
@@ -533,24 +551,51 @@ $("ubi").onclick = () => {
   }, {enableHighAccuracy:true, timeout:10000});
 };
 
-/* ===== RESEÑAS Y SUGERENCIAS =====
-   Ahora se guardan en el navegador (solo demo). Con Supabase, estas 5 funciones
-   pasan a leer/escribir en la base de datos y todos verán lo mismo. */
-const Store = {
-  get(k, def){ try { const v = JSON.parse(localStorage.getItem(k)); return v == null ? def : v; } catch { return def; } },
-  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
-};
-const API = {
-  async listarResenas(){ return Store.get("resenas", []); },
-  async crearResena(r){ const l = Store.get("resenas", []); l.unshift(r); Store.set("resenas", l); },
-  async listarSugerencias(){
-    return Store.get("sugerencias", [{id:"s1",texto:"Pizza",votos:3},{id:"s2",texto:"Alitas",votos:2},{id:"s3",texto:"Jugos naturales",votos:1}]);
-  },
-  async guardarSugerencias(l){ Store.set("sugerencias", l); }
-};
-let estrellas = 0;
-const votados = new Set(Store.get("votados", []));
+/* ===== SUPABASE (reseñas y sugerencias) ===== */
+const SUPABASE_URL = 'https://cnmcrxedcknlptnwaytn.supabase.co';
+const SUPABASE_KEY = 'sb_publishable__gXDOfkjHdK48FBQwAUlRg_hZayc3dX'; // clave pública (publishable): es seguro que esté en la web
+let db = null;
+try { db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY); }
+catch (e) { console.error('Supabase no disponible; la página sigue funcionando sin reseñas en línea.', e); }
+
 const norm = t => t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9 ]/g, "").trim();
+
+const API = {
+  async listarResenas(){
+    if (!db) return [];
+    const { data, error } = await db.from('resenas').select('nombre,comentario,estrellas').order('created_at', { ascending: false }).limit(50);
+    if (error) { console.error('Reseñas:', error); return []; }
+    return data.map(r => ({ estrellas: r.estrellas, nombre: r.nombre || 'Cliente', texto: r.comentario }));
+  },
+  async crearResena(r){
+    if (!db) return false;
+    const { error } = await db.from('resenas').insert({ nombre: r.nombre, comentario: r.texto, estrellas: r.estrellas });
+    if (error) console.error('Guardar reseña:', error);
+    return !error;
+  },
+  async listarSugerencias(){
+    if (!db) return [];
+    const { data, error } = await db.from('sugerencias').select('id,platillo,votos').order('votos', { ascending: false }).limit(50);
+    if (error) { console.error('Sugerencias:', error); return []; }
+    return data.map(s => ({ id: s.id, texto: s.platillo, votos: s.votos }));
+  },
+  async crearSugerencia(texto){            // devuelve el id nuevo, o null si falló
+    if (!db) return null;
+    const { data, error } = await db.from('sugerencias').insert({ platillo: texto, votos: 1 }).select('id').single();
+    if (error) { console.error('Crear sugerencia:', error); return null; }
+    return data.id;
+  },
+  async votar(id){                         // suma 1 en el servidor, de forma atómica
+    if (!db) return false;
+    const { error } = await db.rpc('votar_sugerencia', { sugerencia_id: id });
+    if (error) console.error('Votar:', error);
+    return !error;
+  }
+};
+
+let estrellas = 0;
+const votados = new Set(JSON.parse(localStorage.getItem("votados_rest") || "[]"));
+const guardarVotados = () => localStorage.setItem("votados_rest", JSON.stringify([...votados]));
 
 function pintarEstrellas(){
   const c = $("estrellas"); c.innerHTML = "";
@@ -572,21 +617,21 @@ async function pintarResenas(){
   });
 }
 async function pintarSugerencias(){
-  const l = (await API.listarSugerencias()).sort((a, b) => b.votos - a.votos), cont = $("s-lista"); cont.innerHTML = "";
+  const l = await API.listarSugerencias(), cont = $("s-lista"); cont.innerHTML = "";
+  if (!l.length) { const v = document.createElement("p"); v.className = "sub"; v.textContent = "Aún no hay sugerencias. ¡Sé el primero!"; cont.appendChild(v); return; }
   l.forEach(s => {
     const f = document.createElement("div"); f.className = "sug";
     const t = document.createElement("span"); t.textContent = s.texto;
-    const b = document.createElement("button"); const ya = votados.has(s.id);
+    const b = document.createElement("button"), ya = votados.has(s.id);
     b.textContent = (ya ? "✓ Votaste · " : "Yo también · ") + s.votos; b.disabled = ya;
     b.onclick = () => votar(s.id);
     f.append(t, b); cont.appendChild(f);
   });
 }
 async function votar(id){
-  const l = await API.listarSugerencias(), s = l.find(x => x.id === id);
-  if (!s || votados.has(id)) return;
-  s.votos++; votados.add(id); Store.set("votados", [...votados]);
-  await API.guardarSugerencias(l); pintarSugerencias();
+  if (votados.has(id)) return false;
+  if (!(await API.votar(id))) { $("s-msg").textContent = "No pudimos registrar tu voto. Intenta de nuevo."; return false; }
+  votados.add(id); guardarVotados(); pintarSugerencias(); return true;
 }
 async function sugerir(){
   const texto = $("s-texto").value.trim(), m = $("s-msg");
@@ -595,11 +640,11 @@ async function sugerir(){
   const igual = l.find(x => norm(x.texto) === n || norm(x.texto) + "s" === n || norm(x.texto) === n + "s");
   if (igual) {
     if (votados.has(igual.id)) m.textContent = "Ya votaste por eso, ¡gracias!";
-    else { await votar(igual.id); m.textContent = "Ya la habían pedido, sumamos tu voto"; }
+    else if (await votar(igual.id)) m.textContent = "Ya la habían pedido, sumamos tu voto";
   } else {
-    const nueva = {id: "s" + Date.now(), texto: texto, votos: 1};
-    l.push(nueva); votados.add(nueva.id); Store.set("votados", [...votados]);
-    await API.guardarSugerencias(l); m.textContent = "¡Gracias! Tu sugerencia ya está en la lista.";
+    const id = await API.crearSugerencia(texto);
+    if (id) { votados.add(id); guardarVotados(); m.textContent = "¡Gracias! Tu sugerencia ya está en la lista."; }
+    else m.textContent = "No pudimos guardar tu sugerencia. Intenta de nuevo.";
   }
   $("s-texto").value = ""; pintarSugerencias();
 }
@@ -607,10 +652,12 @@ async function publicarResena(){
   const m = $("r-msg"), texto = $("r-texto").value.trim();
   if (!estrellas) { m.textContent = "Elige cuántas estrellas das."; return; }
   if (texto.length < 3) { m.textContent = "Escribe un comentario corto."; return; }
-  await API.crearResena({estrellas, nombre: $("r-nombre").value.trim() || "Cliente", texto});
+  const ok = await API.crearResena({ estrellas, nombre: $("r-nombre").value.trim() || "Cliente", texto });
+  if (!ok) { m.textContent = "No pudimos guardar tu reseña. Intenta de nuevo."; return; }
   estrellas = 0; $("r-texto").value = ""; $("r-nombre").value = "";
   m.textContent = "¡Gracias por tu reseña!"; pintarEstrellas(); pintarResenas();
 }
+
 function iniciarOpiniones(){
   pintarEstrellas(); pintarResenas(); pintarSugerencias();
   $("r-enviar").onclick = publicarResena; $("s-enviar").onclick = sugerir;
